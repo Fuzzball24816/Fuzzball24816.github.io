@@ -1,40 +1,38 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FOR THE EMPIRE</title>
+    <link rel="stylesheet" href="css/style.css" />
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>TC362 Assignment</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    </head>
-	
-	<body>
-		<div class="text">
-			<img id="google"; src="img/google.png"/>
-		<div class="header">
-			<h1>Google's Technology Stack</h1>
-			<h5>By Jerry Johnson - john3368@msu.edu – A45463386</h5>
-		</div>			
-			<p>Have you ever used the word Google as a verb? The reason that you said Google instead of Yahoo, or Bing, is because of Google’s near complete dominance of web search and advertising market. We have all heard of and used Google at some point. But have you ever wondered how they do it? The company behind the name has some very impressive technologies at hand to carry out its stated mission to organize the world’s information and make it universally accessible and useful.</p>
-			<h3>Servers</h3>
-			<img id="datacenter"; src="img/datacenter.jpg"/>
-			<p>Google runs servers all across the world and has at least 12 in the US. Its datacenters are filled with custom 19 inch racks that contain 40 to 80 servers each. The servers run customized versions of Linux. Different servers have different tasks assigned to them depending on demand. Web servers coordinate the execution of queries sent by users, then format the result into an HTML page.  Data-gathering servers are permanently dedicated to spidering the Web. These are connected with gigabit Ethernet to each other in large clusters. These clusters are then connected together. Worldwide the servers use between 500 and 681 megawatts.</p>
-			<h3>Software</h3>
-			<p>Most software that Google uses was developed internally. For example, a program called Spanner. This is a globally distributed NewSQL database. It was developed internally and is used in many different applications such as web indexing, Google Maps, Youtube, Gmail and MapReduce. Google also developed protocol buffers for internal use. A protocol buffer is used to serialize structured data, similar to XML. After developing this, Google has made protocol compliers available under an open source license. This follows a long tradition of corporate contributions to the open source community. </p>
-			<h3>Search</h3>
-			<p>Google's original product was it's search engine. It is still it's most used feature. One of the reasons Google Search was so successful was an algorithm called Pagerank. It mainly works by checking the amount of back links a page has to determine its importance. Some controversy has come about from this as Google has allegedly artificially increased the rank of their own products. Because this algorithm is so important to the most widely used search engine, website owners spend a huge amount of time and effort trying to game it and increase their site ranking. When you send a search query, Google's vast database is searched for matches in milliseconds using over 200 factors including author, page freshness, and back links to try and guess what it is you are looking for.</p>
-			<h4>Sources</h4>
-						<ul>
-							<li><a href="https://static.googleusercontent.com/external_content/untrusted_dlcp/research.google.com/en/us/archive/googlecluster-ieee.pdf">https://static.googleusercontent.com/external_content/untrusted_dlcp/research.google.com/en/us/archive/googlecluster-ieee.pdf</a></li>
-							<li><a href="http://www.datacenterknowledge.com/archives/2012/05/15/google-data-center-faq/">http://www.datacenterknowledge.com/archives/2012/05/15/google-data-center-faq/</a></li>
-							<li><a href="http://kylecordes.com/2007/youtube-scalability">http://kylecordes.com/2007/youtube-scalability</a></li>
-							<li><a href="https://developers.google.com/protocol-buffers">https://developers.google.com/protocol-buffers</a></li>
-							<li><a href="http://dendritepark.com/what-happens-when-you-google-something/#.VO0vrfnF9po">http://dendritepark.com/what-happens-when-you-google-something/#.VO0vrfnF9po</a></li>
-							
-						</ul>
-		</div>
-	</body>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <script src="js/app.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <h1>Nick and Jerry's FAN SITE</h1>
+    <p>This is our websites with all of our interests!</p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Aboutus.html">About us</a></li>
+        <li><a href="videogames.html">Video Games</a></li>
+        <li><a href="wizardpage.html">Wizard</a></li>
+        <li><a href="cats.html">Cats</a></li>
+        <li><a href="todolist.html">To Do List</a></li>
+        <li><a href="wikipedia.html">Wikipedia Fetcher</a></li>
+      </ul>
+    </nav>
+    <marquee direction="right" scrollamount="5">
+      <img onclick="test()" src="img/star-d.png" />
+    </marquee>
+    <audio class="imp-march" controls src="sound/imp-march.mp4"></audio>
+  </body>
 </html>

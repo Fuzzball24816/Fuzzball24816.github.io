@@ -35,6 +35,7 @@ function deleteAllElements() {
 }
 
 async function getWiki() {
+  $(".wikipedia").empty();
   const url = "https://en.wikipedia.org/api/rest_v1/page/random/summary";
   const response = await fetch(url);
   const article = await response.json();

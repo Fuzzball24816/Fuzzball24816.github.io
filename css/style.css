@@ -1,0 +1,79 @@
+body {
+  background-image: url("../img/background.png");
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: limegreen;
+}
+
+.no-background {
+  background-image: none;
+  color: #e9e8e8;
+  background-color: rgb(36 39 36);
+}
+.wikipedia {
+  font-size: 25px;
+  margin: 0 15%;
+}
+.imp-march {
+  margin: 100px;
+}
+
+nav {
+  border-radius: 5px;
+  background: white;
+}
+
+ul {
+  padding: 0 10px;
+}
+
+nav li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.wizard {
+  height: 1000px;
+  transition: transform 1s;
+}
+
+.wizard:hover {
+  transform: scale(1.5);
+}
+
+a {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.listElement {
+  margin-bottom: 10px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  color: #232328;
+}
+
+.addElementButton {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.deleteButton {
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.deleteAllButton {
+  margin-bottom: 10px;
+}
+
+.getWikiButton {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}

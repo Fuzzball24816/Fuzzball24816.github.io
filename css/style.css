@@ -12,10 +12,16 @@ body {
   color: #e9e8e8;
   background-color: rgb(36 39 36);
 }
+
 .wikipedia {
   font-size: 25px;
   margin: 0 15%;
+  background-color: rgb(184, 179, 179);
+  padding: 10px 20px 10px 0;
+  margin-top: 20px;
+  border-radius: 5px;
 }
+
 .imp-march {
   margin: 100px;
 }

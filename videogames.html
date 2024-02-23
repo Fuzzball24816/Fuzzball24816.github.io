@@ -31,6 +31,16 @@
 
     <div class="wrap">
       <div class="panel">
+        <h1>
+          Here is the most useful information we have found from Rimworld!
+        </h1>
+        <div>Rimworld Plant Fertility Calculator</div>
+        Number of Colonists:
+        <input
+          type="number"
+          onchange="calculateNutrition()"
+          class="numberOfColonistsInput"
+        />
         <input
           onchange="calculateNutrition()"
           type="radio"
@@ -76,17 +86,6 @@
           value="fine"
         />
         <label for="fineMealOption">Fine Meal</label>
-
-        <h1>
-          Here is the most useful information we have found from Rimworld!
-        </h1>
-        <div>Rimworld Plant Fertility Calculator</div>
-        Number of Colonists:
-        <input
-          type="number"
-          onchange="calculateNutrition()"
-          class="numberOfColonistsInput"
-        />
         <div>Number of plants needed</div>
         Rice Plants: <span class="ricePlantsNeeded">0</span> Corn Plants:
         <span class="cornPlantsNeeded">0</span> Potato Plants:

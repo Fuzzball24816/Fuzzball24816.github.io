@@ -1,4 +1,4 @@
-function addElement() {
+const addElement = () => {
   const input = document.getElementById("todoinput");
   const userInputValue = input.value;
 
@@ -16,12 +16,12 @@ function addElement() {
   listContainer.appendChild(listElement);
   listElement.className = "listElement";
   deleteButton.className = "deleteButton";
-}
+};
 
-function deleteAllElements() {
+const deleteAllElements = () => {
   const listElements = document.getElementsByClassName("listElement");
 
   Array.from(listElements).forEach((listElement) => {
     listElement.remove();
   });
-}
+};

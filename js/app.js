@@ -1,11 +1,11 @@
-function test() {
+const test = () => {
   alert("Dew it");
-}
+};
 
-function ruslanPurring() {
+const ruslanPurring = () => {
   document.getElementById("ragala").play();
-}
+};
 
-function wizard() {
+const wizard = () => {
   alert("I CAST TESTICULAR TORSION");
-}
+};

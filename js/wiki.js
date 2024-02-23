@@ -1,4 +1,4 @@
-async function getWiki() {
+const getWiki = async () => {
   $(".wikipedia").empty();
 
   const article = await getRandomWikiPage();
@@ -6,21 +6,21 @@ async function getWiki() {
   $(".wikipedia").append(article.extract_html);
   const imageUrl = article.thumbnail.source;
   $(".wikipedia").append(`<img src="${imageUrl}"></img>`);
-}
+};
 
-async function getRandomWikiPage() {
+const getRandomWikiPage = async () => {
   const url = "https://en.wikipedia.org/api/rest_v1/page/random/summary";
   const response = await fetch(url);
   return response.json();
-}
+};
 
-async function searchWiki(query) {
+const searchWiki = async (query) => {
   const url = `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search=${query}&namespace=0&limit=3&formatversion=2`;
   const response = await fetch(url);
   return response.json();
-}
+};
 
-async function wikiSearch() {
+const wikiSearch = async () => {
   const input = $(".wikiSearchInput");
   const userInputValue = input.val();
 
@@ -43,9 +43,9 @@ async function wikiSearch() {
   finalList.forEach((object) => {
     addToPage(object);
   });
-}
+};
 
-function addToPage(object) {
+const addToPage = (object) => {
   const title = object.title;
   const url = object.url;
 
@@ -54,4 +54,4 @@ function addToPage(object) {
         <a href=${url}>${title}</a>
       </li>
     `);
-}
+};

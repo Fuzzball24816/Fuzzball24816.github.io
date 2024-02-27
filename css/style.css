@@ -143,3 +143,16 @@ h1 {
   border-radius: 5px;
   box-shadow: 0px 0px 6px 1px #5c7f8b;
 }
+
+.skillInputs {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.skillInputs input {
+  width: 40px;
+}
+
+.statsOutputs {
+  text-align: start;
+}

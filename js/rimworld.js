@@ -35,3 +35,17 @@ const mealMultiplerMap = {
   fine: 1.8,
   lavish: 1,
 };
+
+const masterFunction = () => {
+  updateConstruction();
+};
+
+const updateConstruction = (inputs) => {
+  const contructionSkill = Number(
+    document.getElementById("constructionInput").value
+  );
+  const constructionTime = ((0.3 + 0.0875 * contructionSkill) * 100).toFixed(2);
+  const constructionSpeed = document.getElementById("constructionSpeed");
+
+  constructionSpeed.innerText = constructionTime;
+};

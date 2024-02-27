@@ -31,67 +31,72 @@
 
     <div class="wrap">
       <div class="panel">
-        <h1>
+        <h1 class="mb">
           Here is the most useful information we have found from Rimworld!
         </h1>
-        <div>Rimworld Plant Fertility Calculator</div>
-        Number of Colonists:
-        <input
-          type="number"
-          onchange="calculateNutrition()"
-          class="numberOfColonistsInput"
-        />
-        <input
-          onchange="calculateNutrition()"
-          type="radio"
-          id="rawOption"
-          name="foodSelect"
-          value="raw"
-          checked="true"
-        />
-        <label for="rawOption">Raw</label>
+        <div class="mb rimworld-header">Rimworld Plant Meal Calculator</div>
+        <div class="mb">
+          Number of Colonists:
+          <input
+            type="number"
+            onchange="calculateNutrition()"
+            class="numberOfColonistsInput"
+          />
+          <input
+            onchange="calculateNutrition()"
+            type="radio"
+            id="rawOption"
+            name="foodSelect"
+            value="raw"
+            checked="true"
+          />
+          <label for="rawOption">Raw</label>
 
-        <input
-          type="radio"
-          id="pasteOption"
-          name="foodSelect"
-          value="paste"
-          onchange="calculateNutrition()"
-        />
-        <label for="pasteOption">Paste</label>
+          <input
+            type="radio"
+            id="pasteOption"
+            name="foodSelect"
+            value="paste"
+            onchange="calculateNutrition()"
+          />
+          <label for="pasteOption">Paste</label>
 
-        <input
-          type="radio"
-          id="lavishOption"
-          name="foodSelect"
-          value="lavish"
-          onchange="calculateNutrition()"
-        />
-        <label for="lavishOption">Lavish</label>
+          <input
+            type="radio"
+            id="lavishOption"
+            name="foodSelect"
+            value="lavish"
+            onchange="calculateNutrition()"
+          />
+          <label for="lavishOption">Lavish</label>
 
-        <input
-          onchange="calculateNutrition()"
-          type="radio"
-          id="simpleMealOption"
-          name="foodSelect"
-          value="simple"
-        />
-        <label for="simpleMealOption">Simple Meal</label>
+          <input
+            onchange="calculateNutrition()"
+            type="radio"
+            id="simpleMealOption"
+            name="foodSelect"
+            value="simple"
+          />
+          <label for="simpleMealOption">Simple Meal</label>
 
-        <input
-          onchange="calculateNutrition()"
-          type="radio"
-          id="fineMealOption"
-          name="foodSelect"
-          value="fine"
-        />
-        <label for="fineMealOption">Fine Meal</label>
-        <div>Number of plants needed</div>
-        Rice Plants: <span class="ricePlantsNeeded">0</span> Corn Plants:
-        <span class="cornPlantsNeeded">0</span> Potato Plants:
-        <span class="potatoPlantsNeeded">0</span> Berry Plants:
-        <span class="berryPlantsNeeded">0</span> Fungus Plants:
-        <span class="fungusPlantsNeeded">0</span>
+          <input
+            onchange="calculateNutrition()"
+            type="radio"
+            id="fineMealOption"
+            name="foodSelect"
+            value="fine"
+          />
+          <label for="fineMealOption">Fine Meal</label>
+        </div>
+        <div class="mb rimworld-subheader">Number of plants needed</div>
+        <div class="mb">
+          Rice Plants:
+          <span class="ricePlantsNeeded">0</span> Corn Plants:
+          <span class="cornPlantsNeeded">0</span> Potato Plants:
+          <span class="potatoPlantsNeeded">0</span> Berry Plants:
+          <span class="berryPlantsNeeded">0</span> Fungus Plants:
+          <span class="fungusPlantsNeeded">0</span>
+        </div>
       </div>
     </div>
   </body>

@@ -153,6 +153,18 @@ h1 {
   width: 40px;
 }
 
+.propertyInputs {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.propertyInputs input {
+  width: 40px;
+}
+
 .statsOutputs {
   text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

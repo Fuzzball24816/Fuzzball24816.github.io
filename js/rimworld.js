@@ -41,9 +41,11 @@ const masterFunction = () => {
   updateCooking();
   updateMining();
   updatePlants();
+  updateAnimals();
+  updateMedical();
 };
 
-const updateConstruction = (inputs) => {
+const updateConstruction = () => {
   const contructionSkill = Number(
     document.getElementById("constructionInput").value
   );
@@ -52,31 +54,33 @@ const updateConstruction = (inputs) => {
 
   constructionMultiplier = applyGlobalWorkSpeed(constructionMultiplier);
 
-  const constructionSpeed = document.getElementById("constructionSpeed");
-  constructionSpeed.innerText = (constructionMultiplier * 100).toFixed(0);
+  const constructionSpeedElement = document.getElementById("constructionSpeed");
+  constructionSpeedElement.innerText = (constructionMultiplier * 100).toFixed(
+    0
+  );
 };
 
-const updateCooking = (inputs) => {
+const updateCooking = () => {
   const cookingSkill = Number(document.getElementById("cookingInput").value);
   let cookingMultiplier = 0.4 + 0.06 * cookingSkill;
 
   cookingMultiplier = applyGlobalWorkSpeed(cookingMultiplier);
 
-  const cookingSpeed = document.getElementById("cookingSpeed");
-  cookingSpeed.innerText = (cookingMultiplier * 100).toFixed(0);
+  const cookingSpeedElement = document.getElementById("cookingSpeed");
+  cookingSpeedElement.innerText = (cookingMultiplier * 100).toFixed(0);
 };
 
-const updateMining = (inputs) => {
+const updateMining = () => {
   const miningSkill = Number(document.getElementById("miningInput").value);
   let miningMultiplier = 0.04 + 0.12 * miningSkill;
 
   miningMultiplier = applyGlobalWorkSpeed(miningMultiplier);
 
-  const miningSpeed = document.getElementById("miningSpeed");
-  miningSpeed.innerText = (miningMultiplier * 100).toFixed(0);
+  const miningSpeedElement = document.getElementById("miningSpeed");
+  miningSpeedElement.innerText = (miningMultiplier * 100).toFixed(0);
 };
 
-const updatePlants = (inputs) => {
+const updatePlants = () => {
   const plantsSkill = Number(document.getElementById("plantsInput").value);
   let plantsMultiplier = 0.08 + 0.115 * plantsSkill;
 
@@ -86,16 +90,51 @@ const updatePlants = (inputs) => {
     plantsMultiplier = 0.1;
   }
 
-  const plantsSpeed = document.getElementById("plantsSpeed");
-  plantsSpeed.innerText = (plantsMultiplier * 100).toFixed(0);
+  const plantsSpeedElement = document.getElementById("plantsSpeed");
+  plantsSpeedElement.innerText = (plantsMultiplier * 100).toFixed(0);
 };
 
 const applyGlobalWorkSpeed = (speed) => {
   let globalWorkSpeed = Number(
     document.getElementById("globalWorkSpeedInput").value
   );
-
   globalWorkSpeed /= 100;
+
   speed *= globalWorkSpeed;
   return speed;
+};
+
+const applyWildness = (tameChance) => {
+  let wildness = Number(document.getElementById("wildness").value);
+  wildness /= 100;
+
+  if (wildness == 1) tameChance = 0;
+
+  if (wildness > 50) {
+    tameChance *= 1 - wildness;
+  } else {
+    tameChance *= 1 + wildness;
+  }
+
+  return tameChance;
+};
+
+const updateAnimals = () => {
+  const animalSkill = Number(document.getElementById("animalInput").value);
+  let animalTameChance = 0.04 + 0.03 * animalSkill;
+
+  animalTameChance = applyWildness(animalTameChance);
+
+  const tameChanceElement = document.getElementById("tameChance");
+  tameChanceElement.innerText = (animalTameChance * 100).toFixed(0);
+};
+
+const updateMedical = () => {
+  const medicalSkill = Number(document.getElementById("medicalInput").value);
+  let medicalMultiplier = 0.4 + 0.06 * medicalSkill;
+
+  medicalMultiplier = applyGlobalWorkSpeed(medicalMultiplier);
+
+  const medicalSpeedElement = document.getElementById("medicalSpeed");
+  medicalSpeedElement.innerText = (medicalMultiplier * 100).toFixed(0);
 };

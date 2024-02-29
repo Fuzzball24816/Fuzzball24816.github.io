@@ -3,22 +3,11 @@ html {
 }
 
 body {
-  background-image: url("../img/background.png");
+  background-image: url("../img/rimworld.jpg");
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  color: limegreen;
-}
-
-.no-background {
-  background-image: none;
-  color: #e9e8e8;
-  background-color: rgb(36 39 36);
-}
-
-.rimworld-background {
-  background-image: url("../img/rimworld.jpg");
   background-repeat: no-repeat;
   color: white;
   background-color: black;
@@ -41,7 +30,7 @@ body {
   border-style: solid;
   border-width: 1px;
   border-color: #313131;
-  padding: 15px 15px;
+  padding: 0 15px 15px 15px;
 }
 
 .wikipedia {
@@ -167,4 +156,9 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+#wildness {
+  height: 13px;
+  width: 40px;
 }

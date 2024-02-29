@@ -16,7 +16,7 @@
     ></script>
   </head>
 
-  <body class="rimworld-background">
+  <body>
     <nav class="mb">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -259,6 +259,25 @@
           <div>
             <span>Plant speed:</span>
             <span id="plantsSpeed">10</span><span>%</span>
+          </div>
+
+          <div>
+            <span>Medical speed:</span>
+            <span id="medicalSpeed">40</span><span>%</span>
+          </div>
+
+          <div>
+            <span>Tame Chance:</span>
+            <span id="tameChance">4</span><span>% </span>
+            <span>(Wildness %</span>
+            <input
+              onchange="masterFunction()"
+              id="wildness"
+              min="0"
+              value="50"
+              max="100"
+              type="number"
+            />)
           </div>
         </div>
       </div>

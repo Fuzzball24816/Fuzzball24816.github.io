@@ -7,5 +7,5 @@ const ruslanPurring = () => {
 };
 
 const wizard = () => {
-  alert("I CAST TESTICULAR TORSION");
+  alert("I CAST FIREBALL");
 };

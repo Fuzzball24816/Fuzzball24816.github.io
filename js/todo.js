@@ -1,3 +1,5 @@
+"use strict";
+
 const addElement = () => {
   const input = document.getElementById("todoinput");
   const userInputValue = input.value;

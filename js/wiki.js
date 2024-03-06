@@ -1,3 +1,5 @@
+"use strict";
+
 const getWiki = async () => {
   $(".wikipedia").empty();
 

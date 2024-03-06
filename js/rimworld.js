@@ -1,3 +1,5 @@
+"use strict";
+
 const calculateNutrition = () => {
   const numberOfColonists = $(".numberOfColonistsInput").val();
   const nutritionRequiredPerDay = 1.6 * numberOfColonists;

@@ -1,3 +1,5 @@
+"use strict";
+
 const stoicism = async () => {
   $(".stoicism").empty();
 

@@ -145,6 +145,7 @@ h1 {
 .propertyInputs {
   display: flex;
   margin-bottom: 15px;
+  gap: 10px;
 }
 
 .propertyInputs input {
@@ -161,4 +162,8 @@ h1 {
 #wildness {
   height: 13px;
   width: 40px;
+}
+
+.mtop {
+  margin-top: 10px;
 }

@@ -38,13 +38,14 @@ const mealMultiplerMap = {
   lavish: 1,
 };
 
-const masterFunction = () => {
+const godFunction = () => {
   updateConstruction();
   updateCooking();
   updateMining();
   updatePlants();
   updateAnimals();
   updateMedical();
+  updateForage();
 };
 
 const updateConstruction = () => {
@@ -52,19 +53,37 @@ const updateConstruction = () => {
     document.getElementById("constructionInput").value
   );
 
-  let constructionMultiplier = 0.3 + 0.0875 * contructionSkill;
+  let constructionSpeed = 0.3 + 0.0875 * contructionSkill;
+  let manipulation =
+    Number(document.getElementById("manipulationInput").value) / 100;
 
-  constructionMultiplier = applyGlobalWorkSpeed(constructionMultiplier);
+  constructionSpeed = constructionSpeed * manipulation;
+
+  constructionSpeed = applyGlobalWorkSpeed(constructionSpeed);
 
   const constructionSpeedElement = document.getElementById("constructionSpeed");
-  constructionSpeedElement.innerText = (constructionMultiplier * 100).toFixed(
-    0
-  );
+  constructionSpeedElement.innerText = (constructionSpeed * 100).toFixed(0);
 };
 
 const updateCooking = () => {
   const cookingSkill = Number(document.getElementById("cookingInput").value);
-  let cookingMultiplier = 0.4 + 0.06 * cookingSkill;
+
+  let manipulation = Number(document.getElementById("manipulationInput").value);
+  const manipulationScore = manipulation / 6.25 - 16;
+
+  const finalScore = cookingSkill + manipulationScore;
+  let cookingMultiplier;
+  if (finalScore < -20) {
+    cookingMultiplier = 0.1;
+  } else if (finalScore >= -20 && finalScore < 0) {
+    cookingMultiplier = 0.4 + finalScore * 0.015;
+  } else if (finalScore === 0) {
+    cookingMultiplier = 0.4;
+  } else if (finalScore <= 20 && finalScore > 0) {
+    cookingMultiplier = 0.4 + finalScore * 0.06;
+  } else if (finalScore > 20) {
+    cookingMultiplier = 1.6;
+  }
 
   cookingMultiplier = applyGlobalWorkSpeed(cookingMultiplier);
 
@@ -76,6 +95,11 @@ const updateMining = () => {
   const miningSkill = Number(document.getElementById("miningInput").value);
   let miningMultiplier = 0.04 + 0.12 * miningSkill;
 
+  let manipulation =
+    Number(document.getElementById("manipulationInput").value) / 100;
+
+  miningMultiplier = miningMultiplier * manipulation;
+
   miningMultiplier = applyGlobalWorkSpeed(miningMultiplier);
 
   const miningSpeedElement = document.getElementById("miningSpeed");
@@ -84,16 +108,36 @@ const updateMining = () => {
 
 const updatePlants = () => {
   const plantsSkill = Number(document.getElementById("plantsInput").value);
-  let plantsMultiplier = 0.08 + 0.115 * plantsSkill;
+  let plantsSpeed = 0.08 + 0.115 * plantsSkill;
 
-  plantsMultiplier = applyGlobalWorkSpeed(plantsMultiplier);
+  let manipulation =
+    Number(document.getElementById("manipulationInput").value) / 100;
 
-  if (plantsMultiplier < 0.1) {
-    plantsMultiplier = 0.1;
+  plantsSpeed = plantsSpeed * manipulation;
+
+  plantsSpeed = applyGlobalWorkSpeed(plantsSpeed);
+
+  if (plantsSpeed < 0.1) {
+    plantsSpeed = 0.1;
   }
 
   const plantsSpeedElement = document.getElementById("plantsSpeed");
-  plantsSpeedElement.innerText = (plantsMultiplier * 100).toFixed(0);
+  plantsSpeedElement.innerText = (plantsSpeed * 100).toFixed(0);
+};
+
+const updateForage = () => {
+  const plantsSkill = Number(document.getElementById("plantsInput").value);
+  let forageEfficiency = 0.09 * plantsSkill;
+
+  let manipulation =
+    Number(document.getElementById("manipulationInput").value) / 100;
+
+  forageEfficiency -= (1 - manipulation) / 2;
+
+  forageEfficiency = applyGlobalWorkSpeed(forageEfficiency);
+
+  const forageAmountElement = document.getElementById("forageAmount");
+  forageAmountElement.innerText = (forageEfficiency * 100).toFixed(0);
 };
 
 const applyGlobalWorkSpeed = (speed) => {
@@ -111,11 +155,10 @@ const applyWildness = (tameChance) => {
   wildness /= 100;
 
   if (wildness == 1) tameChance = 0;
-
-  if (wildness > 50) {
-    tameChance *= 1 - wildness;
-  } else {
-    tameChance *= 1 + wildness;
+  else if (wildness > 0.5) {
+    tameChance = (tameChance / 2) * wildness;
+  } else if (wildness < 0.5) {
+    tameChance = tameChance * (2 - wildness * 2);
   }
 
   return tameChance;
@@ -124,6 +167,13 @@ const applyWildness = (tameChance) => {
 const updateAnimals = () => {
   const animalSkill = Number(document.getElementById("animalInput").value);
   let animalTameChance = 0.04 + 0.03 * animalSkill;
+
+  let manipulation =
+    Number(document.getElementById("manipulationInput").value) / 100;
+
+  if (manipulation < 0.8) {
+    animalTameChance -= (0.8 - manipulation) * 0.5;
+  }
 
   animalTameChance = applyWildness(animalTameChance);
 
@@ -134,6 +184,11 @@ const updateAnimals = () => {
 const updateMedical = () => {
   const medicalSkill = Number(document.getElementById("medicalInput").value);
   let medicalMultiplier = 0.4 + 0.06 * medicalSkill;
+
+  let manipulation =
+    Number(document.getElementById("manipulationInput").value) / 100;
+
+  medicalMultiplier -= (1 - manipulation) * 1;
 
   medicalMultiplier = applyGlobalWorkSpeed(medicalMultiplier);
 

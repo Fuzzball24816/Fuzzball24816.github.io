@@ -25,6 +25,7 @@
         <li><a href="cats.html">Cats</a></li>
         <li><a href="todolist.html">To Do List</a></li>
         <li><a href="wikipedia.html">Wikipedia Fetcher</a></li>
+        <li><a href="stoic.html">Stoic Quote</a></li>
       </ul>
     </nav>
 
@@ -105,7 +106,7 @@
           <div>
             <label for="animalInput">Animals</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -116,7 +117,7 @@
           <div>
             <label for="constructionInput">Construction</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -127,7 +128,7 @@
           <div>
             <label for="cookingInput">Cooking</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -138,7 +139,7 @@
           <div>
             <label for="craftingInput">Crafting</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -149,7 +150,7 @@
           <div>
             <label for="medicalInput">Medical</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -160,7 +161,7 @@
           <div>
             <label for="miningInput">Mining</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -171,7 +172,7 @@
           <div>
             <label for="meleeInput">Melee</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -182,7 +183,7 @@
           <div>
             <label for="intellectualInput">Intellectual</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -193,7 +194,7 @@
           <div>
             <label for="plantsInput">Plants</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -202,9 +203,20 @@
             />
           </div>
           <div>
+            <label for="artisticInput">Artistic</label>
+            <input
+              onchange="godFunction()"
+              max="20"
+              min="0"
+              value="0"
+              type="number"
+              id="artisticInput"
+            />
+          </div>
+          <div>
             <label for="shootingInput">Shooting</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -215,7 +227,7 @@
           <div>
             <label for="socialInput">Social</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               max="20"
               min="0"
               value="0"
@@ -230,11 +242,21 @@
           <div>
             <label for="globalWorkSpeedInput">Global Work Speed</label>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               min="30"
               value="100"
               type="number"
               id="globalWorkSpeedInput"
+            />
+          </div>
+          <div>
+            <label for="manipulationInput">Manipulation</label>
+            <input
+              onchange="godFunction()"
+              min="0"
+              value="100"
+              type="number"
+              id="manipulationInput"
             />
           </div>
         </div>
@@ -267,11 +289,16 @@
           </div>
 
           <div>
+            <span>Forage Amount:</span>
+            <span id="forageAmount">0</span><span>%</span>
+          </div>
+
+          <div>
             <span>Tame Chance:</span>
             <span id="tameChance">4</span><span>% </span>
             <span>(Wildness %</span>
             <input
-              onchange="masterFunction()"
+              onchange="godFunction()"
               id="wildness"
               min="0"
               value="50"

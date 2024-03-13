@@ -6,8 +6,6 @@
 <slot />
 
 <style>
-  /* @import "$lib/css-reset.css"; */
-
   :global(*) {
     margin: 0;
   }

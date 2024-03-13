@@ -156,7 +156,7 @@ const applyWildness = (tameChance) => {
 
   if (wildness == 1) tameChance = 0;
   else if (wildness > 0.5) {
-    tameChance = (tameChance / 2) * wildness;
+    tameChance = (tameChance / 2) * (1 / wildness);
   } else if (wildness < 0.5) {
     tameChance = tameChance * (2 - wildness * 2);
   }

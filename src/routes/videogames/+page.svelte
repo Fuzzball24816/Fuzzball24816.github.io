@@ -62,12 +62,14 @@
   let cookingSkill = 0;
   let cookingSpeed = 40;
   let miningSkill = 0;
+  let miningSpeed = 4;
   let plantsSkill = 0;
+  let plantsSpeed = 10;
   let forageAmount = 0;
   let globalWorkSpeed = 100;
   let wildness = 50;
   let animalSkill = 0;
-  let animalTameChance = 0;
+  let animalTameChance = 4;
   let medicalSkill = 0;
   let medicalSpeed = 40;
   let operationSpeed = 40;
@@ -113,24 +115,23 @@
 
     miningMultiplier = applyGlobalWorkSpeed(miningMultiplier);
 
-    const miningSpeedElement = document.getElementById("miningSpeed");
-    miningSpeedElement.innerText = (miningMultiplier * 100).toFixed(0);
+    miningSpeed = (miningMultiplier * 100).toFixed(0);
   };
 
   const updatePlants = () => {
-    let plantsSpeed = 0.08 + 0.115 * plantsSkill;
+    let newPlantsSpeed = 0.08 + 0.115 * plantsSkill;
 
     const manipulationPercent = manipulation / 100;
 
-    plantsSpeed = plantsSpeed * manipulationPercent;
+    newPlantsSpeed = newPlantsSpeed * manipulationPercent;
 
-    plantsSpeed = applyGlobalWorkSpeed(plantsSpeed);
+    newPlantsSpeed = applyGlobalWorkSpeed(newPlantsSpeed);
 
-    if (plantsSpeed < 0.1) {
-      plantsSpeed = 0.1;
+    if (newPlantsSpeed < 0.1) {
+      newPlantsSpeed = 0.1;
     }
 
-    plantsSpeed = (plantsSpeed * 100).toFixed(0);
+    plantsSpeed = (newPlantsSpeed * 100).toFixed(0);
   };
 
   const updateForage = () => {
@@ -177,7 +178,6 @@
   };
 
   const updateMedical = () => {
-    const medicalSkill = Number(document.getElementById("medicalInput").value);
     let medicalMultiplier = 0.4 + 0.06 * medicalSkill;
 
     const manipulationPercent = manipulation / 100;
@@ -186,12 +186,10 @@
 
     medicalMultiplier = applyGlobalWorkSpeed(medicalMultiplier);
 
-    const medicalSpeedElement = document.getElementById("medicalSpeed");
-    medicalSpeedElement.innerText = (medicalMultiplier * 100).toFixed(0);
+    operationSpeed = (medicalMultiplier * 100).toFixed(0);
   };
 
   const updateOperationSpeed = () => {
-    const medicalSkill = Number(document.getElementById("medicalInput").value);
     let medicalMultiplier = 0.4 + 0.06 * medicalSkill;
 
     const manipulationPercent = manipulation / 100;
@@ -200,12 +198,7 @@
 
     medicalMultiplier = applyGlobalWorkSpeed(medicalMultiplier);
 
-    const medicalOperationSpeedElement = document.getElementById(
-      "medicalOperationSpeed",
-    );
-    medicalOperationSpeedElement.innerText = (medicalMultiplier * 100).toFixed(
-      0,
-    );
+    operationSpeed = (medicalMultiplier * 100).toFixed(0);
   };
 </script>
 
@@ -284,13 +277,13 @@
     <div class="mb rimworld-subheader">Skills</div>
     <div class="skillInputs">
       <div>
-        <label for="animalInput">Animals</label>
+        <span>Animals</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
+          type="number"
           bind:value={animalSkill}
-          id="animalInput"
         />
       </div>
       <div>
@@ -314,58 +307,53 @@
         />
       </div>
       <div>
-        <label for="craftingInput">Crafting</label>
+        <span>Crafting</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
           value="0"
           type="number"
-          id="craftingInput"
         />
       </div>
       <div>
-        <label for="medicalInput">Medical</label>
+        <span>Medical</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
           type="number"
           bind:value={medicalSkill}
-          id="medicalInput"
         />
       </div>
       <div>
-        <label for="miningInput">Mining</label>
+        <span>Mining</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
           type="number"
           bind:value={miningSkill}
-          id="miningInput"
         />
       </div>
       <div>
-        <label for="meleeInput">Melee</label>
+        <span>Melee</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
           value="0"
           type="number"
-          id="meleeInput"
         />
       </div>
       <div>
-        <label for="intellectualInput">Intellectual</label>
+        <span>Intellectual</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
           value="0"
           type="number"
-          id="intellectualInput"
         />
       </div>
       <div>
@@ -379,14 +367,13 @@
         />
       </div>
       <div>
-        <label for="artisticInput">Artistic</label>
+        <span>Artistic</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
           value="0"
           type="number"
-          id="artisticInput"
         />
       </div>
       <div>
@@ -415,7 +402,12 @@
     <div class="propertyInputs">
       <div>
         <span>Global Work Speed</span>
-        <input on:change={godFunction} min="30" bind:value={globalWorkSpeed} />
+        <input
+          on:change={godFunction}
+          min="30"
+          type="number"
+          bind:value={globalWorkSpeed}
+        />
       </div>
       <div>
         <span>Manipulation</span>
@@ -442,7 +434,7 @@
 
       <div>
         <span>Mining speed:</span>
-        <span id="miningSpeed">4</span><span>%</span>
+        <span>{miningSpeed}</span><span>%</span>
       </div>
 
       <div>
@@ -452,7 +444,7 @@
 
       <div>
         <span>Plant speed:</span>
-        <span id="plantsSpeed">10</span><span>%</span>
+        <span>{plantsSpeed}</span><span>%</span>
       </div>
 
       <div>
@@ -471,8 +463,9 @@
         <span>(Wildness %</span>
         <input
           on:change={godFunction}
-          id="wildness"
           min="0"
+          type="number"
+          id="wildness"
           bind:value={wildness}
           max="100"
         />)

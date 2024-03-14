@@ -1,8 +1,7 @@
 <script>
+  let numberOfColonists = 0;
+
   const calculateNutrition = () => {
-    const numberOfColonists = document.querySelector(
-      ".numberOfColonistsInput",
-    ).value;
     const nutritionRequiredPerDay = 1.6 * numberOfColonists;
     const mealOption = document.querySelector(
       'input[name="foodSelect"]:checked',
@@ -54,32 +53,37 @@
     updateAnimals();
     updateMedical();
     updateForage();
+    updateOperationSpeed();
   };
 
+  let contructionSkill = 0;
+  let manipulation = 100;
+  let constructionSpeed = 30;
+  let cookingSkill = 0;
+  let cookingSpeed = 40;
+  let miningSkill = 0;
+  let plantsSkill = 0;
+  let forageAmount = 0;
+  let globalWorkSpeed = 100;
+  let wildness = 50;
+  let animalSkill = 0;
+  let animalTameChance = 0;
+  let medicalSkill = 0;
+  let medicalSpeed = 40;
+  let operationSpeed = 40;
+
   const updateConstruction = () => {
-    const contructionSkill = Number(
-      document.getElementById("constructionInput").value,
-    );
+    let newConstructionSpeed = 0.3 + 0.0875 * contructionSkill;
+    let manipulationDecimal = manipulation / 100;
 
-    let constructionSpeed = 0.3 + 0.0875 * contructionSkill;
-    let manipulation =
-      Number(document.getElementById("manipulationInput").value) / 100;
+    newConstructionSpeed = newConstructionSpeed * manipulationDecimal;
 
-    constructionSpeed = constructionSpeed * manipulation;
+    newConstructionSpeed = applyGlobalWorkSpeed(newConstructionSpeed);
 
-    constructionSpeed = applyGlobalWorkSpeed(constructionSpeed);
-
-    const constructionSpeedElement =
-      document.getElementById("constructionSpeed");
-    constructionSpeedElement.innerText = (constructionSpeed * 100).toFixed(0);
+    constructionSpeed = (newConstructionSpeed * 100).toFixed(0);
   };
 
   const updateCooking = () => {
-    const cookingSkill = Number(document.getElementById("cookingInput").value);
-
-    let manipulation = Number(
-      document.getElementById("manipulationInput").value,
-    );
     const manipulationScore = manipulation / 6.25 - 16;
 
     const finalScore = cookingSkill + manipulationScore;
@@ -97,19 +101,15 @@
     }
 
     cookingMultiplier = applyGlobalWorkSpeed(cookingMultiplier);
-
-    const cookingSpeedElement = document.getElementById("cookingSpeed");
-    cookingSpeedElement.innerText = (cookingMultiplier * 100).toFixed(0);
+    cookingSpeed = (cookingMultiplier * 100).toFixed(0);
   };
 
   const updateMining = () => {
-    const miningSkill = Number(document.getElementById("miningInput").value);
     let miningMultiplier = 0.04 + 0.12 * miningSkill;
 
-    let manipulation =
-      Number(document.getElementById("manipulationInput").value) / 100;
+    const manipulationPercent = manipulation / 100;
 
-    miningMultiplier = miningMultiplier * manipulation;
+    miningMultiplier = miningMultiplier * manipulationPercent;
 
     miningMultiplier = applyGlobalWorkSpeed(miningMultiplier);
 
@@ -118,13 +118,11 @@
   };
 
   const updatePlants = () => {
-    const plantsSkill = Number(document.getElementById("plantsInput").value);
     let plantsSpeed = 0.08 + 0.115 * plantsSkill;
 
-    let manipulation =
-      Number(document.getElementById("manipulationInput").value) / 100;
+    const manipulationPercent = manipulation / 100;
 
-    plantsSpeed = plantsSpeed * manipulation;
+    plantsSpeed = plantsSpeed * manipulationPercent;
 
     plantsSpeed = applyGlobalWorkSpeed(plantsSpeed);
 
@@ -132,79 +130,82 @@
       plantsSpeed = 0.1;
     }
 
-    const plantsSpeedElement = document.getElementById("plantsSpeed");
-    plantsSpeedElement.innerText = (plantsSpeed * 100).toFixed(0);
+    plantsSpeed = (plantsSpeed * 100).toFixed(0);
   };
 
   const updateForage = () => {
-    const plantsSkill = Number(document.getElementById("plantsInput").value);
     let forageEfficiency = 0.09 * plantsSkill;
 
-    let manipulation =
-      Number(document.getElementById("manipulationInput").value) / 100;
+    const manipulationPercent = manipulation / 100;
 
-    forageEfficiency -= (1 - manipulation) / 2;
+    forageEfficiency -= (1 - manipulationPercent) / 2;
 
     forageEfficiency = applyGlobalWorkSpeed(forageEfficiency);
 
-    const forageAmountElement = document.getElementById("forageAmount");
-    forageAmountElement.innerText = (forageEfficiency * 100).toFixed(0);
+    forageAmount = (forageEfficiency * 100).toFixed(0);
   };
 
   const applyGlobalWorkSpeed = (speed) => {
-    let globalWorkSpeed = Number(
-      document.getElementById("globalWorkSpeedInput").value,
-    );
-    globalWorkSpeed /= 100;
-
-    speed *= globalWorkSpeed;
-    return speed;
+    return speed * (globalWorkSpeed / 100);
   };
 
   const applyWildness = (tameChance) => {
-    let wildness = Number(document.getElementById("wildness").value);
-    wildness /= 100;
+    const newWildness = wildness / 100;
 
-    if (wildness == 1) tameChance = 0;
-    else if (wildness > 0.5) {
-      tameChance = (tameChance / 2) * (1 / wildness);
-    } else if (wildness < 0.5) {
-      tameChance = tameChance * (2 - wildness * 2);
+    if (newWildness == 1) tameChance = 0;
+    else if (newWildness > 0.5) {
+      tameChance = (tameChance / 2) * (1 / newWildness);
+    } else if (newWildness < 0.5) {
+      tameChance = tameChance * (2 - newWildness * 2);
     }
 
     return tameChance;
   };
 
   const updateAnimals = () => {
-    const animalSkill = Number(document.getElementById("animalInput").value);
-    let animalTameChance = 0.04 + 0.03 * animalSkill;
+    let newAnimalTameChance = 0.04 + 0.03 * animalSkill;
 
-    let manipulation =
-      Number(document.getElementById("manipulationInput").value) / 100;
+    const manipulationPercent = manipulation / 100;
 
-    if (manipulation < 0.8) {
-      animalTameChance -= (0.8 - manipulation) * 0.5;
+    if (manipulationPercent < 0.8) {
+      newAnimalTameChance -= (0.8 - manipulationPercent) * 0.5;
     }
 
-    animalTameChance = applyWildness(animalTameChance);
+    newAnimalTameChance = applyWildness(newAnimalTameChance);
 
-    const tameChanceElement = document.getElementById("tameChance");
-    tameChanceElement.innerText = (animalTameChance * 100).toFixed(0);
+    animalTameChance = (newAnimalTameChance * 100).toFixed(0);
   };
 
   const updateMedical = () => {
     const medicalSkill = Number(document.getElementById("medicalInput").value);
     let medicalMultiplier = 0.4 + 0.06 * medicalSkill;
 
-    let manipulation =
-      Number(document.getElementById("manipulationInput").value) / 100;
+    const manipulationPercent = manipulation / 100;
 
-    medicalMultiplier -= (1 - manipulation) * 1;
+    medicalMultiplier -= (1 - manipulationPercent) * 1;
 
     medicalMultiplier = applyGlobalWorkSpeed(medicalMultiplier);
 
     const medicalSpeedElement = document.getElementById("medicalSpeed");
     medicalSpeedElement.innerText = (medicalMultiplier * 100).toFixed(0);
+  };
+
+  const updateOperationSpeed = () => {
+    const medicalSkill = Number(document.getElementById("medicalInput").value);
+    let medicalMultiplier = 0.4 + 0.06 * medicalSkill;
+
+    const manipulationPercent = manipulation / 100;
+
+    medicalMultiplier -= (1 - manipulationPercent) * 1;
+
+    medicalMultiplier = applyGlobalWorkSpeed(medicalMultiplier);
+
+    const medicalOperationSpeedElement = document.getElementById(
+      "medicalOperationSpeed",
+    );
+    medicalOperationSpeedElement.innerText = (medicalMultiplier * 100).toFixed(
+      0,
+    );
   };
 </script>
 
@@ -218,7 +219,7 @@
       Number of Colonists:
       <input
         type="number"
-        class="numberOfColonistsInput"
+        bind:value={numberOfColonists}
         on:change={calculateNutrition}
       />
       <input
@@ -288,31 +289,28 @@
           on:change={godFunction}
           max="20"
           min="0"
-          value="0"
-          type="number"
+          bind:value={animalSkill}
           id="animalInput"
         />
       </div>
       <div>
-        <label for="constructionInput">Construction</label>
+        <span>Construction</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
-          value="0"
           type="number"
-          id="constructionInput"
+          bind:value={contructionSkill}
         />
       </div>
       <div>
-        <label for="cookingInput">Cooking</label>
+        <span>Cooking</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
-          value="0"
           type="number"
-          id="cookingInput"
+          bind:value={cookingSkill}
         />
       </div>
       <div>
@@ -332,8 +330,8 @@
           on:change={godFunction}
           max="20"
           min="0"
-          value="0"
           type="number"
+          bind:value={medicalSkill}
           id="medicalInput"
         />
       </div>
@@ -343,8 +341,8 @@
           on:change={godFunction}
           max="20"
           min="0"
-          value="0"
           type="number"
+          bind:value={miningSkill}
           id="miningInput"
         />
       </div>
@@ -371,14 +369,13 @@
         />
       </div>
       <div>
-        <label for="plantsInput">Plants</label>
+        <span>Plants</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
-          value="0"
           type="number"
-          id="plantsInput"
+          bind:value={plantsSkill}
         />
       </div>
       <div>
@@ -393,25 +390,23 @@
         />
       </div>
       <div>
-        <label for="shootingInput">Shooting</label>
+        <span>Shooting</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
           value="0"
           type="number"
-          id="shootingInput"
         />
       </div>
       <div>
-        <label for="socialInput">Social</label>
+        <span>Social</span>
         <input
           on:change={godFunction}
           max="20"
           min="0"
           value="0"
           type="number"
-          id="socialInput"
         />
       </div>
     </div>
@@ -419,23 +414,16 @@
     <div class="mb rimworld-subheader">Properties</div>
     <div class="propertyInputs">
       <div>
-        <label for="globalWorkSpeedInput">Global Work Speed</label>
-        <input
-          on:change={godFunction}
-          min="30"
-          value="100"
-          type="number"
-          id="globalWorkSpeedInput"
-        />
+        <span>Global Work Speed</span>
+        <input on:change={godFunction} min="30" bind:value={globalWorkSpeed} />
       </div>
       <div>
-        <label for="manipulationInput">Manipulation</label>
+        <span>Manipulation</span>
         <input
           on:change={godFunction}
           min="0"
-          value="100"
           type="number"
-          id="manipulationInput"
+          bind:value={manipulation}
         />
       </div>
     </div>
@@ -444,17 +432,22 @@
     <div class="statsOutputs">
       <div>
         <span>Construction speed:</span>
-        <span id="constructionSpeed">30</span><span>%</span>
+        <span>{constructionSpeed}</span><span>%</span>
       </div>
 
       <div>
         <span>Cooking speed:</span>
-        <span id="cookingSpeed">40</span><span>%</span>
+        <span>{cookingSpeed}</span><span>%</span>
       </div>
 
       <div>
         <span>Mining speed:</span>
         <span id="miningSpeed">4</span><span>%</span>
+      </div>
+
+      <div>
+        <span>Medical Operation Speed:</span>
+        <span>{operationSpeed}</span><span>%</span>
       </div>
 
       <div>
@@ -464,25 +457,24 @@
 
       <div>
         <span>Medical speed:</span>
-        <span id="medicalSpeed">40</span><span>%</span>
+        <span>{medicalSpeed}</span><span>%</span>
       </div>
 
       <div>
         <span>Forage Amount:</span>
-        <span id="forageAmount">0</span><span>%</span>
+        <span>{forageAmount}</span><span>%</span>
       </div>
 
       <div>
         <span>Tame Chance:</span>
-        <span id="tameChance">4</span><span>% </span>
+        <span>{animalTameChance}</span><span>% </span>
         <span>(Wildness %</span>
         <input
           on:change={godFunction}
           id="wildness"
           min="0"
-          value="50"
+          bind:value={wildness}
           max="100"
-          type="number"
         />)
       </div>
     </div>

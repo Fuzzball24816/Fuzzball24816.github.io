@@ -15,16 +15,27 @@
   Delete All
 </button>
 
-{#each todos as todo, i}
-  <div class="listElement">{todo}</div>
-  <button
-    class="deleteButton"
-    on:click={() => (todos = [...todos.slice(0, i), ...todos.slice(i + 1)])}
-    >Delete Button</button
-  >
-{/each}
+{#if todos.length > 0}
+  <div class="todoBackground">
+    {#each todos as todo, i}
+      <div class="listElement">{todo}</div>
+      <button
+        class="deleteButton"
+        on:click={() => (todos = [...todos.slice(0, i), ...todos.slice(i + 1)])}
+        >Delete Button</button
+      >
+    {/each}
+  </div>
+{/if}
 
 <style>
+  .todoBackground {
+    background-color: black;
+    border-radius: 5px;
+    text-align: center;
+    padding: 15px;
+  }
+
   h1 {
     text-align: center;
   }

@@ -8,9 +8,10 @@
     updateMedical();
     updateForage();
     updateOperationSpeed();
+    updateConstructionSuccessChance();
   };
 
-  let contructionSkill = 0;
+  let constructionSkill = 0;
   let manipulation = 100;
   let constructionSpeed = 30;
   let cookingSkill = 0;
@@ -27,9 +28,10 @@
   let medicalSkill = 0;
   let medicalSpeed = 40;
   let operationSpeed = 40;
+  let constructionSuccessChance = 75;
 
   const updateConstruction = () => {
-    let newConstructionSpeed = 0.3 + 0.0875 * contructionSkill;
+    let newConstructionSpeed = 0.3 + 0.0875 * constructionSkill;
     let manipulationDecimal = manipulation / 100;
 
     newConstructionSpeed = newConstructionSpeed * manipulationDecimal;
@@ -37,6 +39,31 @@
     newConstructionSpeed = applyGlobalWorkSpeed(newConstructionSpeed);
 
     constructionSpeed = (newConstructionSpeed * 100).toFixed(0);
+  };
+
+  const updateConstructionSuccessChance = () => {
+    const successChanceMap = {
+      0: 75,
+      1: 80,
+      2: 85,
+      3: 87.5,
+      4: 90,
+      5: 92.5,
+      6: 95,
+      7: 97.5,
+    };
+
+    if (constructionSkill < 8) {
+      constructionSuccessChance = successChanceMap[constructionSkill];
+    } else {
+      constructionSuccessChance = 100;
+    }
+
+    const manipulationOffset = (100 - manipulation) / 3;
+
+    constructionSuccessChance -= manipulationOffset;
+
+    constructionSuccessChance = constructionSuccessChance.toFixed(0);
   };
 
   const updateCooking = () => {
@@ -178,7 +205,7 @@
       max="20"
       min="0"
       type="number"
-      bind:value={contructionSkill}
+      bind:value={constructionSkill}
     />
   </div>
   <div>
@@ -274,6 +301,11 @@
   <div>
     <span>Construction speed:</span>
     <span>{constructionSpeed}</span><span>%</span>
+  </div>
+
+  <div>
+    <span>Construction success chance:</span>
+    <span>{constructionSuccessChance}</span><span>%</span>
   </div>
 
   <div>

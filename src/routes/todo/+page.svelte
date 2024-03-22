@@ -1,8 +1,8 @@
 <script>
   let todos = [
-    { text: "todo 1", isEditing: false },
-    { text: "todo 2", isEditing: false },
-    { text: "todo 3", isEditing: false },
+    { text: "todo 1", isEditing: false, completed: false },
+    { text: "todo 2", isEditing: false, completed: false },
+    { text: "todo 3", isEditing: false, completed: false },
   ];
 
   let todoInput;
@@ -12,7 +12,9 @@
       const newTodo = {
         text: todoInput,
         isEditing: false,
+        completed: false,
       };
+
       todos = [...todos, newTodo];
     }
   };
@@ -38,25 +40,49 @@
 </script>
 
 <h1>Todo List</h1>
-<form on:submit|preventDefault={addTodo}>
+<form on:submit={addTodo}>
   <input bind:value={todoInput} />
-  <button class="addElementButton">Add Element</button>
+  <button class="addElementButton">Add Todo</button>
 </form>
 <button class="deleteAllButton" on:click={deleteAllTodos}>Delete All</button>
 
 {#if todos.length > 0}
   <div class="todoContainer">
-    {#each todos as todo, i}
-      <div>
-        {#if todo.isEditing}
-          <input />
-          <button on:click={() => saveTodo(i)}>Save</button>
-        {:else}
-          <span>{todo.text}</span>
-          <button on:click={() => editTodo(i)}>Edit</button>
-        {/if}
-        <button on:click={() => deleteTodo(i)}> Delete </button>
-      </div>
+    {#each todos as todo, index}
+      {#if todo.completed === false}
+        <div>
+          <input type="checkbox" bind:checked={todo.completed} />
+          {#if todo.isEditing}
+            <input bind:value={todo.text} />
+            <button on:click={() => saveTodo(index)}>Save</button>
+          {:else}
+            <span>{todo.text}</span>
+            <button on:click={() => editTodo(index)}>Edit</button>
+          {/if}
+          <button on:click={() => deleteTodo(index)}> Delete </button>
+        </div>
+      {/if}
+    {/each}
+  </div>
+{/if}
+
+<!-- Completed Todos  -->
+{#if todos.length > 0}
+  <div class="todoContainer">
+    {#each todos as todo, index}
+      {#if todo.completed}
+        <div>
+          <input type="checkbox" bind:checked={todo.completed} />
+          {#if todo.isEditing}
+            <input bind:value={todo.text} />
+            <button on:click={() => saveTodo(index)}>Save</button>
+          {:else}
+            <span>{todo.text}</span>
+            <button on:click={() => editTodo(index)}>Edit</button>
+          {/if}
+          <button on:click={() => deleteTodo(index)}> Delete </button>
+        </div>
+      {/if}
     {/each}
   </div>
 {/if}

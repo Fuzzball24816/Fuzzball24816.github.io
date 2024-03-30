@@ -3,6 +3,7 @@
     { text: "todo 1", isEditing: false, completed: false },
     { text: "todo 2", isEditing: false, completed: false },
     { text: "todo 3", isEditing: false, completed: false },
+    { text: "done", isEditing: false, completed: true },
   ];
 
   let todoInput;
@@ -26,12 +27,8 @@
     ];
   };
 
-  const editTodo = (indexToEdit) => {
-    todos[indexToEdit].isEditing = true;
-  };
-
-  const saveTodo = (indexToSave) => {
-    todos[indexToSave].isEditing = false;
+  const toggleTodo = (indexToEdit) => {
+    todos[indexToEdit].isEditing = !todos[indexToEdit].isEditing;
   };
 
   const deleteAllTodos = () => {
@@ -39,55 +36,65 @@
   };
 </script>
 
-<h1>Todo List</h1>
-<form on:submit={addTodo}>
-  <input bind:value={todoInput} />
-  <button class="addElementButton">Add Todo</button>
-</form>
-<button class="deleteAllButton" on:click={deleteAllTodos}>Delete All</button>
+<div class="todoPage">
+  <h1>Todo List</h1>
+  <form on:submit={addTodo}>
+    <input bind:value={todoInput} />
+    <button>Add Todo</button>
+    <button on:click|preventDefault={deleteAllTodos}>Delete All</button>
+  </form>
 
-{#if todos.length > 0}
-  <div class="todoContainer">
-    {#each todos as todo, index}
-      {#if todo.completed === false}
-        <div>
-          <input type="checkbox" bind:checked={todo.completed} />
-          {#if todo.isEditing}
-            <input bind:value={todo.text} />
-            <button on:click={() => saveTodo(index)}>Save</button>
-          {:else}
-            <span>{todo.text}</span>
-            <button on:click={() => editTodo(index)}>Edit</button>
-          {/if}
-          <button on:click={() => deleteTodo(index)}> Delete </button>
-        </div>
-      {/if}
-    {/each}
-  </div>
-{/if}
+  {#if todos.length > 0}
+    <div class="todoContainer">
+      <h2>Todos</h2>
+      {#each todos as todo, index}
+        {#if todo.completed === false}
+          <div>
+            <input type="checkbox" bind:checked={todo.completed} />
+            {#if todo.isEditing}
+              <input bind:value={todo.text} />
+              <button on:click={() => toggleTodo(index)}>Save</button>
+            {:else}
+              <span>{todo.text}</span>
+              <button on:click={() => toggleTodo(index)}>Edit</button>
+            {/if}
+            <button on:click={() => deleteTodo(index)}> Delete </button>
+          </div>
+        {/if}
+      {/each}
+    </div>
+  {/if}
 
-<!-- Completed Todos  -->
-{#if todos.length > 0}
-  <div class="todoContainer">
-    {#each todos as todo, index}
-      {#if todo.completed}
-        <div>
-          <input type="checkbox" bind:checked={todo.completed} />
-          {#if todo.isEditing}
-            <input bind:value={todo.text} />
-            <button on:click={() => saveTodo(index)}>Save</button>
-          {:else}
-            <span>{todo.text}</span>
-            <button on:click={() => editTodo(index)}>Edit</button>
-          {/if}
-          <button on:click={() => deleteTodo(index)}> Delete </button>
-        </div>
-      {/if}
-    {/each}
-  </div>
-{/if}
+  <!-- Completed Todos  -->
+  {#if todos.length > 0}
+    <div class="todoContainer">
+      <h2>Completed Todos</h2>
+      {#each todos as todo, index}
+        {#if todo.completed}
+          <div>
+            <input type="checkbox" bind:checked={todo.completed} />
+            {#if todo.isEditing}
+              <input bind:value={todo.text} />
+              <button on:click={() => toggleTodo(index)}>Save</button>
+            {:else}
+              <span>{todo.text}</span>
+              <button on:click={() => toggleTodo(index)}>Edit</button>
+            {/if}
+            <button on:click={() => deleteTodo(index)}> Delete </button>
+          </div>
+        {/if}
+      {/each}
+    </div>
+  {/if}
+</div>
 
 <style>
+  .todoPage {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
   .todoContainer {
     background-color: #0000009c;
     border-radius: 5px;
@@ -100,14 +107,5 @@
 
   h1 {
     text-align: center;
-  }
-
-  .addElementButton {
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-
-  .deleteAllButton {
-    margin-bottom: 10px;
   }
 </style>

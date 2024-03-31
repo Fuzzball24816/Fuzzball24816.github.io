@@ -1,4 +1,5 @@
 <nav>
+  <a href="../portfolio">Portfolio</a>
   <a href="../">Home</a>
   <a href="../wizard">Wizard</a>
   <a href="../cats">Cats</a>

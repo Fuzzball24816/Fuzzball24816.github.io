@@ -1,5 +1,6 @@
 <script>
-  import Loader from "../../lib/loader.svelte";
+  import Box from "$lib/box.svelte";
+  import Loader from "$lib/loader.svelte";
 
   let htmlContent = "";
   let searchString;

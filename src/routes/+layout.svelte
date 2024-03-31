@@ -11,14 +11,13 @@
   }
 
   :global(body) {
-    background-image: url("/rimworld.jpg");
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     color: white;
     background-repeat: no-repeat;
-    background-color: black;
+    background-color: #252526;
     background-position: top center;
   }
 </style>

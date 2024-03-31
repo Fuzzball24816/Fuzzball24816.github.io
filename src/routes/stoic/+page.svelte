@@ -1,5 +1,5 @@
 <script>
-  import Loader from "../../lib/loader.svelte";
+  import Loader from "$lib/loader.svelte";
 
   let author = "";
   let quote = "";

@@ -5,7 +5,7 @@
 <style>
   .panel {
     text-align: center;
-    width: 990px;
+    width: 50%;
     margin: 0 auto;
     background-color: #14171a;
     border-style: solid;

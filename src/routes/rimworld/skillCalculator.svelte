@@ -188,7 +188,7 @@
 
 <div class="mb rimworld-subheader">Skills</div>
 <div class="skillInputs">
-  <div>
+  <div class="skillWrap">
     <span>Animals</span>
     <input
       on:change={godFunction}
@@ -198,7 +198,7 @@
       bind:value={animalSkill}
     />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Construction</span>
     <input
       on:change={godFunction}
@@ -208,7 +208,7 @@
       bind:value={constructionSkill}
     />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Cooking</span>
     <input
       on:change={godFunction}
@@ -218,11 +218,11 @@
       bind:value={cookingSkill}
     />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Crafting</span>
     <input on:change={godFunction} max="20" min="0" value="0" type="number" />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Medical</span>
     <input
       on:change={godFunction}
@@ -232,7 +232,7 @@
       bind:value={medicalSkill}
     />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Mining</span>
     <input
       on:change={godFunction}
@@ -242,15 +242,15 @@
       bind:value={miningSkill}
     />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Melee</span>
     <input on:change={godFunction} max="20" min="0" value="0" type="number" />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Intellectual</span>
     <input on:change={godFunction} max="20" min="0" value="0" type="number" />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Plants</span>
     <input
       on:change={godFunction}
@@ -260,15 +260,15 @@
       bind:value={plantsSkill}
     />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Artistic</span>
     <input on:change={godFunction} max="20" min="0" value="0" type="number" />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Shooting</span>
     <input on:change={godFunction} max="20" min="0" value="0" type="number" />
   </div>
-  <div>
+  <div class="skillWrap">
     <span>Social</span>
     <input on:change={godFunction} max="20" min="0" value="0" type="number" />
   </div>
@@ -366,7 +366,7 @@
     font-size: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 6px 3px #5c7f8b;
-    width: 860px;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -376,7 +376,7 @@
     border-style: solid;
     border-width: 1px;
     border-color: #060606;
-    width: 410px;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
@@ -386,10 +386,14 @@
   .skillInputs {
     display: flex;
     margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
   }
 
-  .skillInputs input {
-    width: 40px;
+  .skillWrap {
+    display: flex;
+    flex-direction: column;
   }
 
   .propertyInputs {
@@ -399,7 +403,7 @@
   }
 
   .propertyInputs input {
-    width: 40px;
+    width: 50%;
   }
 
   .statsOutputs {

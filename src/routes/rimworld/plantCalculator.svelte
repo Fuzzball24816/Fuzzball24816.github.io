@@ -128,7 +128,7 @@
     font-size: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 6px 3px #5c7f8b;
-    width: 860px;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -138,7 +138,7 @@
     border-style: solid;
     border-width: 1px;
     border-color: #060606;
-    width: 410px;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;

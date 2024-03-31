@@ -7,7 +7,7 @@
 <h1>Nick and Jerry's FAN SITE</h1>
 <p>This is our websites with all of our interests!</p>
 <marquee direction="right" scrollamount="5">
-  <img on:click={test} src="star-d.png" alt="star destroyer" />
+  <blink><img on:click={test} src="star-d.png" alt="star destroyer" /></blink>
 </marquee>
 <audio class="imp-march" controls src="imp-march.mp4"></audio>
 

@@ -1,9 +1,9 @@
 <script>
 </script>
-
+<div class="header"> Welcome to my website. I'm Nicholas, an Oregon based Web Developer. </div>
 <div class="textbox">
   <div class="section">
-    <div class="title">&lt;Experience&gt;</div>
+    <div class="title">&lt;Portfolio&gt;</div>
     <div>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -16,7 +16,7 @@
   </div>
 
   <div class="section">
-    <div class="title">&lt;Skills&gt;</div>
+    <div class="title">&lt;About&gt;</div>
     <div>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -30,7 +30,7 @@
   <div class="section">
     <div class="title">&lt;Contact&gt;</div>
     <div>
-      <span class="green">Lorem ipsum dolor Jerry</span> sit amet, consectetur adipiscing
+      <span>Lorem ipsum dolor Jerry</span> sit amet, consectetur adipiscing
       elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
       enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
       ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
@@ -48,8 +48,14 @@
     font-size: large;
     width: 50%;
     gap: 20px;
-    flex-direction: column;
+    flex-direction: row;
     text-align: center;
+  }
+  .header {
+    display: flex;
+    color: lightgreen;
+    font-size: 50px;
+
   }
 
   .section {
@@ -57,13 +63,9 @@
   }
 
   .title {
-    font-size: 75px;
-    color: rgb(105, 180, 105);
+    font-size: 25px;
+    color: lightgreen;
     padding: 10px;
-  }
-
-  .yellow {
-    color: yellow;
   }
 
   .green {
@@ -75,14 +77,5 @@
     color: gold;
     background-color: transparent;
     text-decoration: none;
-  }
-
-  .blink {
-    animation: blink-animation 0.05s steps(2, start) infinite;
-  }
-  @keyframes blink-animation {
-    to {
-      visibility: hidden;
-    }
   }
 </style>

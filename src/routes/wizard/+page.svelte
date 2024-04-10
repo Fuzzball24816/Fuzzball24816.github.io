@@ -4,13 +4,18 @@
   };
 </script>
 
-<button on:click={wizard}
-  ><img class="wizard" src="wizard.png" alt="wizard" />
-</button>
+<div class="container">
+  <button on:click={wizard}
+    ><img class="wizard" src="wizard.png" alt="wizard" />
+  </button>
+</div>
 
 <style>
+  .container {
+    display: flex;
+    justify-content: center;
+  }
   .wizard {
-    height: 800px;
     transition: transform 1s;
   }
 

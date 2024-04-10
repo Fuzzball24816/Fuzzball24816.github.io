@@ -21,32 +21,44 @@
   };
 </script>
 
-<button class="mtop" on:click={stoicism} disabled={loading}>
-  Get a random stoic quote!
-</button>
+<div class="container">
+  <button class="random-button" on:click={stoicism} disabled={loading}>
+    Get a random stoic quote!
+  </button>
 
-{#if (author && quote) || loading}
-  <div class="quoteBox">
-    {#if loading}
-      <Loader />
-    {:else}
-      {author}
-      <div>{quote}</div>
-    {/if}
-  </div>
-{/if}
+  {#if (author && quote) || loading}
+    <div class="quoteBox">
+      {#if loading}
+        <Loader />
+      {:else}
+        <div>{quote}</div>
+        <div>{author}</div>
+      {/if}
+    </div>
+  {/if}
+</div>
 
 <style>
-  .quoteBox {
-    font-size: 25px;
-    margin: 0 15%;
-    background-color: rgb(63, 57, 57);
-    padding: 10px 20px;
-    margin-top: 20px;
-    border-radius: 5px;
+  .container {
+    width: 80%;
+    margin: 0 auto;
   }
 
-  .mtop {
-    margin-top: 10px;
+  .random-button {
+    margin: 0 auto;
+    display: block;
+  }
+
+  .quoteBox {
+    font-size: 25px;
+    margin: 0 auto;
+    width: fit-content;
+    background-color: rgb(63, 57, 57);
+    padding: 25px;
+    margin-top: 25px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 </style>

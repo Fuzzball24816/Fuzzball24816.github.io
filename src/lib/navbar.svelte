@@ -25,10 +25,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 28px;
-    margin: 10px 0;
+    margin: 10px auto 20px;
     border-radius: 5px;
     background: #14171a;
     border: 1px solid #313131;
+    width: fit-content;
   }
 
   a,

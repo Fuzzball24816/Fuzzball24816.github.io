@@ -52,34 +52,45 @@
   };
 </script>
 
-<button class="getWikiButton" on:click={getWiki} disabled={loading}>
-  Get a random Wiki Page!
-</button>
-<button on:click={wikiSearch} class="mb" disabled={loading}>Search Wiki!</button
->
-<input bind:value={searchString} class="wikiSearchInput" />
-
-{#if loading || htmlContent || resultsList.length > 0}
-  <div class="wikipedia">
-    {#if loading}
-      <Loader />
-    {:else if htmlContent}
-      {@html htmlContent}
-    {:else if resultsList.length > 0}
-      <ul>
-        {#each resultsList as result}
-          <li>
-            <a href={result.url}>{result.title}</a>
-          </li>
-        {/each}
-      </ul>
-    {/if}
+<div class="wiki-container">
+  <div class="controls">
+    <button class="getWikiButton" on:click={getWiki} disabled={loading}>
+      Get a random Wiki Page!
+    </button>
+    <br />
+    <button on:click={wikiSearch} disabled={loading}>Search Wiki!</button>
+    <input bind:value={searchString} class="wikiSearchInput" />
   </div>
-{/if}
+  {#if loading || htmlContent || resultsList.length > 0}
+    <div class="wikipedia">
+      {#if loading}
+        <Loader />
+      {:else if htmlContent}
+        <div class="wikipedia-html">
+          {@html htmlContent}
+        </div>
+      {:else if resultsList.length > 0}
+        <ul>
+          {#each resultsList as result}
+            <li>
+              <a href={result.url}>{result.title}</a>
+            </li>
+          {/each}
+        </ul>
+      {/if}
+    </div>
+  {/if}
+</div>
 
 <style>
-  .mb {
-    margin-bottom: 10px;
+  .wiki-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .controls {
+    text-align: center;
   }
 
   .wikipedia {
@@ -89,6 +100,12 @@
     padding: 10px;
     margin-top: 20px;
     border-radius: 5px;
+  }
+
+  .wikipedia-html {
+    display: flex;
+    gap: 15px;
+    justify-content: space-around;
   }
 
   .getWikiButton {

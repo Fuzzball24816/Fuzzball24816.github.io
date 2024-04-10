@@ -93,6 +93,8 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin: 0 auto;
+    width: fit-content;
   }
 
   .todoContainer {
@@ -105,7 +107,8 @@
     gap: 10px;
   }
 
-  h1 {
+  h1,
+  form {
     text-align: center;
   }
 </style>

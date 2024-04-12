@@ -11,5 +11,6 @@
     border-width: 1px;
     border-color: #313131;
     padding: 0 15px 15px 15px;
+    margin: 0 auto;
   }
 </style>

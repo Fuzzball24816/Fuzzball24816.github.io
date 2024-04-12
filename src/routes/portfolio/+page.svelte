@@ -1,20 +1,18 @@
 <div class="wrapper">
   <div class="header">I'm Nicholas, an Oregon based Web Developer.</div>
-  <div class="textbox">
-    <div class="section">
-      <div class="section">
-        <div class="about">
-          <img class="aboutPicture" src="nicholas.jpg" alt="Nicholas" />
-          <div>
-            <div class="title">&lt;About&gt;</div>
-            I'm a web developer who has a passion for design and functionality. I
-            love working with people and helping build their dream. When I'm not
-            designing websites i'm usually designing garden layouts! I love nature
-            and being in the great outdoors.
-          </div>
-        </div>
+
+  <div class="flex">
+    <div class="textbox">
+      <div>
+        <div class="title">&lt;About&gt;</div>
+        Welcome to my corner of the web! I'm Nicholas, a web developer with a passion
+        for design and functionality. Whether it's crafting captivating websites
+        or designing serene garden layouts, I thrive on bringing dreams to life.
+        Let's work together to build your digital oasis that reflects your unique
+        vision and resonates with your audience. Let's make magic happen!
       </div>
-      <div class="portfolio">
+
+      <div class="flex-with-gap">
         <div>
           <div class="title">&lt;Portfolio&gt;</div>
           <div>
@@ -46,50 +44,56 @@
           </div>
         </div>
       </div>
+
+      <div>
+        <div class="title">&lt;Contact&gt;</div>
+        <div></div>
+        <a href="../contact" class="link">Contact me here</a>
+      </div>
     </div>
-    <div class="section">
-      <div class="title">&lt;Contact&gt;</div>
-      <div></div>
-      <a href="../contact" class="link">Contact me here</a>
-    </div>
+
+    <img class="aboutPicture" src="nicholas.jpg" alt="Nicholas" />
   </div>
 </div>
 <img class="tree" src="tree.png" alt="It's a fucking tree" />
 
 <style>
+  .flex {
+    display: flex;
+  }
+
   .aboutPicture {
-    width: 400px;
-    margin: 20px;
+    height: 500px;
+    margin-left: 50px;
+    margin-top: 20px;
   }
-  .about {
-    display: flex;
-  }
-  .portfolio {
-    display: flex;
-    gap: 10px;
-  }
+
   .boxwrap {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-    margin-top: 50px;
   }
+
   .portfolioPicture {
     width: 100px;
     height: 100px;
     margin: 10px;
   }
+
   .box {
     border: 2px solid #90bfee;
     height: 170px;
     width: 170px;
     padding: 10px;
     background-color: #494949;
+    text-align: center;
   }
+
   .wrapper {
     margin: 0 auto;
-    width: 80%;
+    width: 55%;
+    color: white;
   }
 
   a {
@@ -103,10 +107,8 @@
   .textbox {
     display: flex;
     font-size: large;
-    gap: 20px;
+    gap: 40px;
     flex-direction: column;
-    text-align: center;
-    margin: 10px;
   }
 
   .header {
@@ -116,14 +118,10 @@
     margin-bottom: 25px;
   }
 
-  .section {
-    color: white;
-  }
-
   .title {
     font-size: 40px;
     color: #eebf90;
-    margin: 10px;
+    margin-bottom: 10px;
   }
 
   .link {
@@ -131,11 +129,18 @@
     background-color: transparent;
     text-decoration: none;
   }
+
   .tree {
     width: 100%;
     height: 500px;
     position: fixed;
     bottom: 0;
     z-index: -1;
+  }
+
+  .flex-with-gap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 </style>
